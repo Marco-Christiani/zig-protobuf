@@ -810,6 +810,7 @@ fn dupeField(
 
 /// Generic deinit function. Properly cleans any field required. Meant to be embedded in generated structs.
 pub fn deinit(allocator: std.mem.Allocator, data: anytype) void {
+    @setEvalBranchQuota(100_000);
     const T = @typeInfo(@TypeOf(data)).pointer.child;
 
     const struct_info = @typeInfo(T).@"struct";
